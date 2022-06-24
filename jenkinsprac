@@ -1,0 +1,53 @@
+  pipeline{
+    agent any
+    tools{
+      maven "maven3.8.4"
+    }
+stages{
+  stage('1.GitClone'){
+  steps{
+    sh "echo Github cloning"
+    git 'https://github.com/gbengene/web-app.git'
+  }
+}
+stage('2.MavenBuild'){
+  steps{
+  sh "echo build packages"
+  sh "mvn clean package"
+}
+}
+stage('3.testingtheCode'){
+  steps{
+    sh "mvn sonar:sonar"
+  }
+  }
+stage('4.backupArchitfacts'){
+  steps{
+    sh "mvn deploy"
+  }
+  }
+ stage('5.Deploytostaging'){
+     steps{
+         deploy adapters: [tomcat9(credentialsId: 'tomcat-cred', path: '', url: 'http://35.175.221.124:8080/')], contextPath: null, war: 'target/*.war'
+     }
+ }
+ stage('6.Approval'){
+    steps{
+    sh "echo Approval Needed"
+    timeout(time:5,unit:'DAYS'){
+      input message:'Approval for Production'
+    }
+  }
+}
+ stage('7.Deploytostaging'){
+     steps{
+         deploy adapters: [tomcat9(credentialsId: 'tomcat-cred', path: '', url: 'http://35.175.221.124:8080/')], contextPath: null, war: 'target/*.war'
+     }
+ }
+ stage('8.Emailnotification'){
+  steps{
+    emailext body: 'The build is success', subject: 'Build Success', to: 'talk2antonez@gmail.com'
+  }
+ }
+}
+}
