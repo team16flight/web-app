@@ -103,7 +103,7 @@
 	    <snapshotRepository>
 	      <id>nexus</id>
 	      <name>ACADA Learning Snapshot Nexus Repository </name>
-	      <url>http://172.31.86.108:8081/repository/shared-lib-snapshot/</url>
+	      <url>http://54.234.91.137:8000/repository/owen.app/</url>
 	    </snapshotRepository>
 	    
 	</distributionManagement>
