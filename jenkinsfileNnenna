@@ -1,0 +1,45 @@
+pipeline{
+  agent any
+  tools{
+    maven "maven3.8.6"
+  }
+  stages{
+    stage("1.CodeClone"){
+      steps{
+        git credentialsId: 'Github-Cred2', url: 'https://github.com/Nubanwani6/web-app.git'
+      }
+    }
+    stage("2.Build"){
+      steps{
+        sh "mvn clean package"
+      }
+    }
+    stage("3.Artifacts"){
+      steps{
+        sh "mvn deploy"
+      }
+    }
+    stage("4.DeploytoUAT"){
+      steps{
+       deploy adapters: [tomcat9(credentialsId: 'tomcat-cred', path: '', url: 'http://54.184.138.80:8080/')], contextPath: null, war: 'target/*.war'
+      }
+    }
+    stage("5.Approval"){
+      steps{
+        timeout(time:5, unit:'DAYS'){
+        input message: 'Approval for Production'
+      }
+    }
+    }
+    stage("6.DeploytoPROD"){
+      steps{
+        deploy adapters: [tomcat9(credentialsId: 'tomcat-cred', path: '', url: 'http://54.184.138.80:8080/')], contextPath: null, war: 'target/*.war'
+    }
+    }
+    stage("7.EmailNotification"){
+      steps{
+        emailext body: 'This is Build Success', subject: 'Build Success', to: 'info@acadalearning.com'
+      }
+    }
+  }
+}
