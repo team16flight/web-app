@@ -5,7 +5,7 @@
 	<groupId>com.mt</groupId>
 	<artifactId>maven-web-application</artifactId>
 	<packaging>war</packaging>
-	<version>2.0.5-SNAPSHOT</version>
+	<version>1.0.1-SNAPSHOT</version>
 	
 	<name>maven-web-application</name>
 
@@ -87,7 +87,7 @@
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
-			<version>3.1.0</version>
+			<version>1.0.1</version>
 			<scope>provided</scope>
 		</dependency>
 		
