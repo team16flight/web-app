@@ -5,7 +5,7 @@
 	<groupId>com.mt</groupId>
 	<artifactId>maven-web-application</artifactId>
 	<packaging>war</packaging>
-	<version>2.0.5-SNAPSHOT</version>
+	<version>1.0.1-SNAPSHOT</version>
 	
 	<name>maven-web-application</name>
 
@@ -21,9 +21,9 @@
 		<spring.version>5.1.2.RELEASE</spring.version>
 		<junit.version>4.11</junit.version>
 		<log4j.version>1.2.17</log4j.version>
-		<sonar.host.url>http://172.31.81.112:7000/</sonar.host.url>
+		<sonar.host.url>http:/172.31.23.188:5000/</sonar.host.url>
 		<sonar.login>admin</sonar.login>
-		<sonar.password>admin</sonar.password>
+		<sonar.password>admin123</sonar.password>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
@@ -87,7 +87,7 @@
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
-			<version>3.1.0</version>
+			<version>1.0.1</version>
 			<scope>provided</scope>
 		</dependency>
 		
@@ -97,13 +97,13 @@
 	    <repository>
 	      <id>nexus</id>
 	      <name>ACADA Learning Releases Nexus Repository</name>
-	      <url>http://172.31.86.108:8081/repository/rbc-app-release/</url>
+	      <url>http://172.31.26.44:8081/repository/rbc-app-release/</url>
 	    </repository>
 	    
 	    <snapshotRepository>
 	      <id>nexus</id>
 	      <name>ACADA Learning Snapshot Nexus Repository </name>
-	      <url>http://172.31.86.108:8081/repository/shared-lib-snapshot/</url>
+	      <url>http://172.31.26.44:8081/repository/shared-lib-snapshot/</url>
 	    </snapshotRepository>
 	    
 	</distributionManagement>
